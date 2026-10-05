@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Dispute Evidence Manager</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Stripe Dispute Evidence Manager</div>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Primary Action Card -->
+        <section class="card">
+            <h2>Generate Evidence Pack</h2>
+            <p>Enter a Stripe Dispute ID to generate a Visa/Mastercard compliant evidence PDF.</p>
+
+            <div class="input-group">
+                <input
+                    type="text"
+                    id="disputeIdInput"
+                    placeholder="Enter Stripe Dispute ID (e.g., dp_12345)"
+                    aria-label="Stripe Dispute ID"
+                >
+                <button id="generatePdfBtn">Generate &amp; Download Evidence PDF</button>
+            </div>
+        </section>
+
+        <!-- Disputes Table -->
+        <section class="table-section">
+            <h2>Recent Disputes</h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dispute ID</th>
+                            <th>Amount</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="disputesTableBody">
+                        <!-- Populated dynamically by app.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <h3>⚠️ Confirm Evidence Submission</h3>
+            <p class="modal-dispute-id">
+                Dispute ID: <code id="modalDisputeId">—</code>
+            </p>
+            <p class="modal-warning">
+                <strong>Finalize &amp; Submit</strong> will send the evidence directly
+                to the issuing bank. <span class="danger-text">This action cannot be undone.</span>
+            </p>
+
+            <div class="modal-actions">
+                <button id="modalCancelBtn" class="btn-secondary">Cancel</button>
+                <button id="modalDraftBtn" class="btn-draft">Save Draft</button>
+                <button id="modalFinalizeBtn" class="btn-danger">Finalize &amp; Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
